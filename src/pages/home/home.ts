@@ -16,7 +16,6 @@ export class HomePage {
   constructor(public navCtrl: NavController, public myService: MyServiceProvider) {
     // using services for the http calls to make this cleaner
     this.name = myService.getData();
-     
   }
 
 }
