@@ -1,4 +1,4 @@
-import { MyServiceProvider } from './../../providers/my-service/my-service';
+import { myService, User } from './../../providers/my-service/my-service';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -12,10 +12,15 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
   name: Observable<any>;
+  myUser: User;
 
-  constructor(public navCtrl: NavController, public myService: MyServiceProvider) {
+  constructor(public navCtrl: NavController, public myService: myService) {
     // using services for the http calls to make this cleaner
-    this.name = myService.getData();
+    myService.getData().subscribe(newUser => {
+       this.myUser = newUser;
+       console.log('my new user :', this.myUser);
+    });
+
   }
 
 }

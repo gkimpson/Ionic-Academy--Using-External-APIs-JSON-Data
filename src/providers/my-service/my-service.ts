@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+export class User {
+  name: String;
+  email: String;
+
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+}
+
 /*
   Generated class for the MyServiceProvider provider.
 
@@ -9,14 +19,18 @@ import 'rxjs/add/operator/map';
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class MyServiceProvider {
+export class myService {
 
   constructor(public http: Http) {
-    console.log('Hello MyServiceProvider Provider');
+    console.log('Hello myService Provider');
   }
 
   getData() {
-    return this.http.get('https://randomuser.me/api/?result=1').map(data => data.json());
+    return this.http.get('https://randomuser.me/api/?result=1')
+    .map(data => data.json())
+    .map(res => {
+      return new User(res['results'][0].name.first, res['results'][0].email);
+    });    
   }
 
 }
