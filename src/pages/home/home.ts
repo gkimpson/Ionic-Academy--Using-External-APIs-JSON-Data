@@ -1,23 +1,20 @@
+import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  name: String;
+  name: Observable<any>;
 
   constructor(public navCtrl: NavController, public http: Http) {
-     this.http.get('https://randomuser.me/api?result=1').subscribe(data => {
-       console.log("my data: ", data);
-       let myJson = data.json();
-       console.log(myJson);
-
-       this.name = myJson['results'][0]['name']['first'];
-
-     })
+    // modify the result on the fly to this.name
+     this.name = this.http.get('https://randomuser.me/api?result=1').map(data => data.json());
   }
 
 }
