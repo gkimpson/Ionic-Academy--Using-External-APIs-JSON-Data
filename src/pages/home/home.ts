@@ -7,10 +7,16 @@ import { Http } from '@angular/http';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  name: String;
 
   constructor(public navCtrl: NavController, public http: Http) {
-     this.http.get('http://randomuser.me/api?result=1').subscribe(data => {
+     this.http.get('https://randomuser.me/api?result=1').subscribe(data => {
        console.log("my data: ", data);
+       let myJson = data.json();
+       console.log(myJson);
+
+       this.name = myJson['results'][0]['name']['first'];
+
      })
   }
 
