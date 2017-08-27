@@ -1,5 +1,6 @@
 {
   "name": "using-external-apis-json-data",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {}
 }
