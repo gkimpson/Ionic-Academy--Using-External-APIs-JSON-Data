@@ -7,5 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-  {{ (name | async)?.results[0].name.first }}<br>
+  Name : {{ (myUser)?.name }}<br>
+  Email : {{ (myUser)?.email }}<br>
 </ion-content>

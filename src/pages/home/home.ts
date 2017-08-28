@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class HomePage {
   name: Observable<any>;
   myUser: User;
+  someVar: Object;
 
   constructor(public navCtrl: NavController, public myService: myService) {
     // using services for the http calls to make this cleaner
@@ -20,7 +21,6 @@ export class HomePage {
        this.myUser = newUser;
        console.log('my new user :', this.myUser);
     });
-
   }
 
 }
